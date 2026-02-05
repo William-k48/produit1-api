@@ -13,10 +13,7 @@ import java.util.List;
 public class ProduitController {
     private final ProduitService ProduitService;
 
-    @GetMapping("/hello")
-    public String sayHello(){
-        return "Hello";
-    }
+
 
     @GetMapping("/all")
     public List<Produit> getAllProduits(){
@@ -25,6 +22,25 @@ public class ProduitController {
 
     @PostMapping
     public Produit createProduit(@RequestBody Produit produit){
+
         return ProduitService.createProduit(produit);
     }
+
+    @GetMapping("{id}")
+    public Produit getProduitById(@PathVariable long id){
+        return ProduitService.getProduitById(id);
+    }
+
+    @DeleteMapping("{id}")
+    public String deleteProduitById(@PathVariable("id")long idProduit){
+        return ProduitService.deleteProduitById(idProduit);
+
+    }
+
+    @PutMapping("{id}")
+    public Produit editProduit(@PathVariable long id, @RequestBody Produit produit){
+        return ProduitService.editProduit(id,produit);
+    }
+
+
 }
